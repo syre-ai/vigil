@@ -1,6 +1,6 @@
 <img src="docs/banner.png" alt="Vigil" width="100%">
 
-Is a deployed overhead-imagery detector still working inside the conditions it was validated on? Vigil checks three signals on public RarePlanes (WorldView-3) imagery.
+Vigil checks three signals on public RarePlanes (WorldView-3) imagery, all computed live from the data.
 
 | Signal | Method |
 |---|---|
