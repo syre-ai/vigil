@@ -1,0 +1,13 @@
+data/
+node_modules/
+__pycache__/
+*.pyc
+.env
+*.pt
+*.pth
+*.onnx
+frontend/dist/
+.venv/
+*.sqlite
+*.db
+.claude/scheduled_tasks.lock

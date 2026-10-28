@@ -1,0 +1,47 @@
+:root {
+  /* ---------- surfaces ---------- */
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #f9fafb; /* subtle hover / recessed fill */
+  --surface-3: #f1f3f5; /* stronger recessed fill (track backgrounds) */
+  --border: #e2e5ea;
+  --border-soft: #edeff2;
+
+  /* ---------- text ---------- */
+  --text: #111827;
+  --text-dim: #5b6472;
+  --text-faint: #8a93a1;
+
+  /* ---------- primary accent (links, active nav, primary buttons) ---------- */
+  --accent-blue: #1f5aa6;
+  --accent-blue-hover: #184b8a;
+
+  /* ---------- chart / emphasis colors (solid, muted) ---------- */
+  --accent-green: #15803d;
+  --accent-amber: #d97706;
+  --accent-red: #dc2626;
+  --accent-grey: #9aa3af;
+
+  /* ---------- status pill colors: tinted background + darker foreground ---------- */
+  --pill-green-bg: #dcfce7;
+  --pill-green-fg: #166534;
+  --pill-amber-bg: #fef3c7;
+  --pill-amber-fg: #92400e;
+  --pill-red-bg: #fee2e2;
+  --pill-red-fg: #991b1b;
+  --pill-grey-bg: #f1f3f5;
+  --pill-grey-fg: #4b5563;
+  --pill-blue-bg: #dbeafe;
+  --pill-blue-fg: #1e40af;
+
+  --font-sans: 'Inter', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  --shadow-card: 0 1px 2px rgba(17, 24, 39, 0.04);
+
+  color-scheme: light;
+}
