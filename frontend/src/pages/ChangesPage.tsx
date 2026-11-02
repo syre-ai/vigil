@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { ChangedDetChip, ChangesSort } from '../api/types';
 import { ChangedChipGrid } from '../components/ChangedChipGrid';
@@ -7,7 +7,9 @@ import { InfoPopover } from '../components/InfoPopover';
 import { Modal } from '../components/Modal';
 import { QueryBoundary } from '../components/QueryState';
 import type { ReviewActionsHandle } from '../components/ReviewActions';
-import { useChanges, useChangesSummary, useSummary } from '../hooks/useApi';
+import { STATIC } from '../api/client';
+import { FieldCompareTable } from '../components/FieldCompareTable';
+import { useChanges, useChangesSummary, useCollections, useSummary, useVersionsCompare } from '../hooks/useApi';
 import { usePersistedState } from '../hooks/usePersistedState';
 import { count, pct } from '../lib/format';
 
@@ -55,6 +57,21 @@ function ChangedDetChipModal({ items, detId, onSelect, onClose }: { items: Chang
   );
 }
 
+// Public snapshot only: Apply can't run there, so show the comparison it ends with.
+function SnapshotCompare({ a, b }: { a: string; b: string }) {
+  const compare = useVersionsCompare(a, b);
+  const collections = useCollections();
+  const groups = useMemo(() => new Map((collections.data?.groups ?? []).map((g) => [g.group_id, g])), [collections.data]);
+  return (
+    <div data-tour="feedback-result">
+      <QueryBoundary isLoading={compare.isLoading} error={compare.error} data={compare.data} loadingLabel="Loading comparison…">
+        {(data) => <FieldCompareTable compare={data} groups={groups} />}
+      </QueryBoundary>
+      <div className="section-gap" />
+    </div>
+  );
+}
+
 export function ChangesPage() {
   const summary = useSummary();
   const versions = summary.data?.versions ?? [];
@@ -98,6 +115,7 @@ export function ChangesPage() {
           </div>
         </div>
       </div>
+      {STATIC && hasAdaptedVersion && a && b && <SnapshotCompare a={a} b={b} />}
 
 
       {changesSummary.data && (

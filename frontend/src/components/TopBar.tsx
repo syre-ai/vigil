@@ -3,6 +3,8 @@ import { useCollectionsSummary, useSummary } from '../hooks/useApi';
 import { count, pct } from '../lib/format';
 import { useView } from '../state/useView';
 import { ViewToggle } from './ViewToggle';
+import { STATIC } from '../api/client';
+import { TOUR_EVENT } from '../demo/DemoLayer';
 
 function AnalystStats() {
   const summary = useCollectionsSummary();
@@ -38,6 +40,11 @@ export function TopBar({ onGuideOpen }: { onGuideOpen: () => void }) {
       <div className="topbar-right">
         {view === 'analyst' ? <AnalystStats /> : <BenchmarkStats />}
         <ViewToggle />
+        {STATIC && (
+          <button type="button" className="btn btn-sm" onClick={() => window.dispatchEvent(new Event(TOUR_EVENT))}>
+            Tour
+          </button>
+        )}
         <button type="button" className="btn btn-sm" onClick={onGuideOpen}>
           <HelpCircle size={14} strokeWidth={1.75} />
           How to read this

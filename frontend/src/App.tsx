@@ -22,6 +22,7 @@ import { ToastProvider } from './state/toast';
 import { ViewProvider } from './state/view';
 import { ErrorBoundary } from './ErrorBoundary';
 import { STATIC } from './api/client';
+import { DemoLayer } from './demo/DemoLayer';
 
 function Routed() {
   const { route } = useNav();
@@ -80,11 +81,11 @@ function App() {
             <TopBar onGuideOpen={() => setGuideOpen(true)} />
             {STATIC && (
               <div className="snapshot-banner">
-                Read-only snapshot of a local prototype. Every number was computed by the real pipeline on public RarePlanes
-                imagery (CC BY-SA 4.0); version v2 applies 8 scripted analyst reviews at Tirana. Reviewing and Apply are
-                disabled. <a href="https://github.com/syre-ai/vigil">Code</a>
+                Read-only snapshot: real pipeline output on public RarePlanes imagery (CC BY-SA 4.0); v2 applies 8 scripted
+                analyst reviews. Reviewing is disabled. <a href="https://github.com/syre-ai/vigil">Code</a>
               </div>
             )}
+            {STATIC && <DemoLayer />}
             <div className="shell">
               <Nav />
               <main className="main">

@@ -102,7 +102,7 @@ export function ReferencePage() {
 
             <div className="section-gap" />
 
-            <div className="panel">
+            <div className="panel" data-tour="known-classes">
               <div className="panel-title">
                 Known classes
                 <InfoPopover label="About known classes">

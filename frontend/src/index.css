@@ -3094,3 +3094,82 @@ select:focus-visible {
 @media print {
   .page-title::before { display: none; }
 }
+
+/* ---- Public demo: start screen and guided tour (VITE_STATIC only) ---- */
+.demo-start-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(11, 31, 27, 0.72);
+}
+.demo-start {
+  max-width: 560px;
+  padding: 36px 40px 28px;
+  background: var(--surface);
+  border-top: 4px solid var(--orange);
+  color: var(--text);
+}
+.demo-start-title {
+  margin: 0 0 16px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.demo-start p {
+  margin: 0 0 14px;
+  font-size: 15px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.demo-start-meta {
+  color: var(--text-dim);
+  font-size: 13px !important;
+}
+.demo-start-actions {
+  display: flex;
+  gap: 10px;
+  margin: 22px 0 18px;
+}
+.demo-start-foot {
+  margin: 0 !important;
+  font-size: 12px !important;
+  color: var(--text-dim);
+}
+.demo-start-foot a { color: inherit; }
+.tour-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+}
+.tour-step {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-size: 12px;
+}
+.tour-text {
+  flex: 1 1 auto;
+  max-width: 980px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.tour-actions {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 6px;
+}
+.tour-focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
