@@ -1,6 +1,7 @@
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import { usePostReview, useReviewClasses, useUsedLabels } from '../hooks/useApi';
 import type { Review, ReviewAction, ReviewSource } from '../api/types';
+import { ApiError } from '../api/client';
 import { useToast } from '../state/useToast';
 import { reviewSummary, shortRole } from '../lib/format';
 
@@ -251,7 +252,11 @@ export const ReviewActions = forwardRef<
           </div>
         </div>
       )}
-      {mutation.isError && <div className="state-error" style={{ fontSize: 11, marginTop: 4 }}>Review failed to save.</div>}
+      {mutation.isError && (
+        <div className="state-error" style={{ fontSize: 11, marginTop: 4 }}>
+          {mutation.error instanceof ApiError && mutation.error.status === 403 ? mutation.error.message : 'Review failed to save.'}
+        </div>
+      )}
     </div>
   );
 });

@@ -34,6 +34,23 @@ import type {
 
 const BASE = '/api';
 
+// Read-only snapshot mode (the public demo on GitHub Pages): every GET is served
+// from files recorded off the real backend by scripts/record_snapshot.mjs, keyed
+// by a hash of the exact request path. Writes are disabled.
+export const STATIC = import.meta.env.VITE_STATIC === '1';
+const SNAP = `${import.meta.env.BASE_URL}snap/`;
+const READ_ONLY = 'Read-only snapshot: reviews and model updates need the local backend.';
+
+// FNV-1a, 32-bit. Must match snapKey in scripts/record_snapshot.mjs.
+export function snapKey(path: string): string {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < path.length; i++) {
+    h ^= path.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h.toString(16).padStart(8, '0');
+}
+
 export class ApiError extends Error {
   status: number;
   constructor(status: number, message: string) {
@@ -44,8 +61,9 @@ export class ApiError extends Error {
 }
 
 async function getJSON<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}${path}`);
+  const res = await fetch(STATIC ? `${SNAP}api/${snapKey(path)}.json` : `${BASE}${path}`);
   if (!res.ok) {
+    if (STATIC) throw new ApiError(res.status, 'Not captured in this read-only snapshot.');
     const body = await res.json().catch(() => ({ detail: res.statusText }));
     throw new ApiError(res.status, body.detail || res.statusText);
   }
@@ -53,6 +71,7 @@ async function getJSON<T>(path: string): Promise<T> {
 }
 
 async function postJSON<T>(path: string, body: unknown): Promise<T> {
+  if (STATIC) throw new ApiError(403, READ_ONLY);
   const res = await fetch(`${BASE}${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -73,13 +92,13 @@ function qs(params: Record<string, string | number | boolean | undefined>): stri
 }
 
 export function chipImageUrl(annId: number): string {
-  return `${BASE}/chips/${annId}/image`;
+  return STATIC ? `${SNAP}img/chips_${annId}.webp` : `${BASE}/chips/${annId}/image`;
 }
 export function tileImageUrl(tileId: number): string {
-  return `${BASE}/tiles/${tileId}/image`;
+  return STATIC ? `${SNAP}img/tiles_${tileId}.webp` : `${BASE}/tiles/${tileId}/image`;
 }
 export function detImageUrl(detId: number): string {
-  return `${BASE}/det/${detId}/image`;
+  return STATIC ? `${SNAP}img/det_${detId}.webp` : `${BASE}/det/${detId}/image`;
 }
 
 export const api = {
@@ -155,7 +174,7 @@ export const api = {
     return buildFieldQueueFromCollections(limit, min_conf ?? 0);
   },
   report: async (): Promise<string> => {
-    const res = await fetch(`${BASE}/report`);
+    const res = await fetch(STATIC ? `${SNAP}report.md` : `${BASE}/report`);
     if (!res.ok) throw new ApiError(res.status, res.statusText);
     return res.text();
   },

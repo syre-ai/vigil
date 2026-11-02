@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { NavContext, type Route } from './navContext';
 
 // Default landing page depends on the persisted view (read directly from
@@ -32,6 +32,10 @@ export function NavProvider({ children }: { children: ReactNode }) {
     setRoute({ page, batchId: resolved });
     window.scrollTo({ top: 0 });
   }, []);
+  // Dev only: lets scripts/record_snapshot.mjs drive navigation.
+  useEffect(() => {
+    if (import.meta.env.DEV) (window as unknown as { __vigilGoto?: typeof goto }).__vigilGoto = goto;
+  }, [goto]);
   const value = useMemo(() => ({ route, goto }), [route, goto]);
   return <NavContext.Provider value={value}>{children}</NavContext.Provider>;
 }

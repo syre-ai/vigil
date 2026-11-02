@@ -2811,3 +2811,13 @@ table.data-table tbody tr.row-link:focus-visible {
   text-overflow: ellipsis;
   min-width: 0;
 }
+
+.snapshot-banner {
+  padding: 6px 20px;
+  font-size: 12px;
+  line-height: 1.4;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.snapshot-banner a { color: inherit; text-decoration: underline; }
