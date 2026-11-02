@@ -301,7 +301,7 @@ export function Evaluation() {
                         <div className="cmc-bar-track">
                           <div
                             className="cmc-bar-fill"
-                            style={{ width: `${((data.detection.by_role_group.civil.recall ?? 0) * 100).toFixed(1)}%`, background: 'var(--accent-blue)' }}
+                            style={{ width: `${((data.detection.by_role_group.civil.recall ?? 0) * 100).toFixed(1)}%`, background: 'var(--series-control)' }}
                           />
                         </div>
                       </div>
@@ -365,8 +365,8 @@ export function Evaluation() {
             </div>
 
             <div className="section-gap" />
-            <div className="panel" style={{ borderColor: 'var(--accent-blue)' }}>
-              <span className="mono" style={{ color: 'var(--accent-blue)' }}>
+            <div className="panel" style={{ borderColor: 'var(--accent)' }}>
+              <span className="mono" style={{ color: 'var(--accent)' }}>
                 {data.note}
               </span>
             </div>

@@ -2,7 +2,7 @@ import { Bar, BarChart, Cell, ReferenceLine, ResponsiveContainer, Tooltip, XAxis
 import type { DriftSeriesEntry } from '../api/types';
 import { score, shortBatchName } from '../lib/format';
 
-const COLORS = { ok: '#1f5aa6', watch: '#d97706', alert: '#dc2626' };
+const COLORS = { ok: 'var(--series-control)', watch: 'var(--series-watch)', alert: 'var(--series-alert)' };
 
 function colorFor(entry: DriftSeriesEntry): string {
   if (entry.p_value < 0.01) return COLORS.alert;
@@ -35,11 +35,11 @@ export function DriftChart({ series }: { series: DriftSeriesEntry[] }) {
   return (
     <ResponsiveContainer width="100%" height={170}>
       <BarChart data={data} margin={{ top: 6, right: 8, left: 0, bottom: 4 }}>
-        <XAxis dataKey="shortName" tick={{ fill: '#8a93a1', fontSize: 11 }} axisLine={false} tickLine={false} interval={0} height={24} />
-        <YAxis tick={{ fill: '#8a93a1', fontSize: 11 }} axisLine={false} tickLine={false} width={30} tickCount={4} />
+        <XAxis dataKey="shortName" tick={{ fill: 'var(--text-faint)', fontSize: 11 }} axisLine={false} tickLine={false} interval={0} height={24} />
+        <YAxis tick={{ fill: 'var(--text-faint)', fontSize: 11 }} axisLine={false} tickLine={false} width={40} tickCount={4} />
         <Tooltip content={<DriftTooltip />} />
         <ReferenceLine y={nullP95} stroke={COLORS.alert} strokeDasharray="4 3" label={{ value: 'null p95', position: 'insideTopRight', fill: COLORS.alert, fontSize: 11 }} />
-        <Bar dataKey="score" name="drift score" radius={[3, 3, 0, 0]}>
+        <Bar dataKey="score" name="drift score" radius={0}>
           {data.map((entry) => (
             <Cell key={entry.batch_id} fill={colorFor(entry)} />
           ))}

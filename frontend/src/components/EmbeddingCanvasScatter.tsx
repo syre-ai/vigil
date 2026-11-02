@@ -6,10 +6,11 @@ import { NA, score } from '../lib/format';
 type Kind = 'reference' | 'batch-normal' | 'batch-novel';
 type DrawPoint = { sx: number; sy: number; kind: Kind; ann_id: number; role_true?: string | null; novelty?: number; is_novel?: boolean };
 
+// Canvas requires literal paint values; keep these aligned with the series tokens.
 const COLORS: Record<Kind, string> = {
-  reference: '#9aa3af',
-  'batch-normal': '#1f5aa6',
-  'batch-novel': '#d97706',
+  reference: '#6D756C',
+  'batch-normal': '#0F2A25',
+  'batch-novel': '#B04E32',
 };
 
 const HEIGHT = 440;
@@ -70,7 +71,7 @@ export function EmbeddingCanvasScatter({ reference, batch }: { reference: Embedd
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = '#FAF7F0';
     ctx.fillRect(0, 0, width, HEIGHT);
 
     const pad = 10;

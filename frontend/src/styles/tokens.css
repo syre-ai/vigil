@@ -1,47 +1,71 @@
+/* Vigil / Shane Cairns — shared palette and presentation tokens. */
 :root {
-  /* ---------- surfaces ---------- */
-  --bg: #f5f6f8;
-  --surface: #ffffff;
-  --surface-2: #f9fafb; /* subtle hover / recessed fill */
-  --surface-3: #f1f3f5; /* stronger recessed fill (track backgrounds) */
-  --border: #e2e5ea;
-  --border-soft: #edeff2;
+  --green: #0F2A25;
+  --green-deep: #0B1F1B;
+  --green-raised: #13332D;
+  --cream: #F1EDE2;
+  --orange: #DE6E50;
+  --orange-ink: #B04E32;
+  --gold: #E1B377;
+  --sage: #9EC2A9;
+  --khaki: #C8B07C;
+  --sage-line: #3F5E55;
+  --ink: #17271F;
+  --ink-soft: #4A5A52;
+  --rule: #B9B7AD;
 
-  /* ---------- text ---------- */
-  --text: #111827;
-  --text-dim: #5b6472;
-  --text-faint: #8a93a1;
+  --bg: #F3EFE6;
+  --surface: #FAF7F0;
+  --surface-2: var(--cream);
+  --surface-3: #E6E1D5;
+  --border: var(--rule);
+  --border-soft: #D0CDC2;
+  --text: var(--ink);
+  --text-dim: var(--ink-soft);
+  /* Small labels remain AA on every light surface. */
+  --text-faint: #566158;
+  --accent: var(--orange-ink);
+  --accent-hover: #8D3D28;
+  --accent-green: #315E48;
+  --accent-amber: #795B1D;
+  --accent-red: #963F2E;
+  --accent-grey: #6D756C;
 
-  /* ---------- primary accent (links, active nav, primary buttons) ---------- */
-  --accent-blue: #1f5aa6;
-  --accent-blue-hover: #184b8a;
+  /* Status fills / text: green = nominal, ochre = watch, rust = action. */
+  --pill-green-bg: #DEE8DD;
+  --pill-green-fg: #28513B;
+  --pill-amber-bg: #F0E3C3;
+  --pill-amber-fg: #71521B;
+  --pill-red-bg: #F1DED4;
+  --pill-red-fg: #8F3827;
+  --pill-grey-bg: #E6E3DA;
+  --pill-grey-fg: #4A5A52;
+  --pill-blue-bg: #E0E7E2; /* existing reference-status hook */
+  --pill-blue-fg: #284E44;
 
-  /* ---------- chart / emphasis colors (solid, muted) ---------- */
-  --accent-green: #15803d;
-  --accent-amber: #d97706;
-  --accent-red: #dc2626;
-  --accent-grey: #9aa3af;
+  --series-control: var(--green);
+  --series-flagged: var(--orange-ink);
+  --series-watch: var(--accent-amber);
+  --series-alert: var(--accent-red);
+  --series-reference: var(--accent-grey);
+  /* Categorical map colors are distinct from status colors. */
+  --domain-train: #8A8170;
+  --domain-calibration: #454D4A;
+  --domain-control: var(--green);
+  --domain-off-nadir: #68813A;
+  --domain-foreign: #80618D;
+  --domain-haze: #2B7C83;
+  --domain-snow: #658DAA;
+  --domain-military: var(--orange-ink);
+  --domain-synthetic: #B08B2E;
 
-  /* ---------- status pill colors: tinted background + darker foreground ---------- */
-  --pill-green-bg: #dcfce7;
-  --pill-green-fg: #166534;
-  --pill-amber-bg: #fef3c7;
-  --pill-amber-fg: #92400e;
-  --pill-red-bg: #fee2e2;
-  --pill-red-fg: #991b1b;
-  --pill-grey-bg: #f1f3f5;
-  --pill-grey-fg: #4b5563;
-  --pill-blue-bg: #dbeafe;
-  --pill-blue-fg: #1e40af;
-
-  --font-sans: 'Inter', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Lato', -apple-system, 'Segoe UI', Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-
-  --shadow-card: 0 1px 2px rgba(17, 24, 39, 0.04);
-
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 0px;
+  --shadow-card: none;
+  --topbar-height: 64px;
   color-scheme: light;
 }

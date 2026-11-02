@@ -13,15 +13,15 @@ import { pct, score } from '../lib/format';
 const DOMAIN_ORDER = ['ref_train', 'ref_calib', 'ref_holdout', 'off_nadir', 'foreign', 'haze', 'snow', 'military', 'synthetic'];
 
 const DOMAIN_COLORS: Record<string, string> = {
-  ref_train: '#94a3b8',
-  ref_calib: '#64748b',
-  ref_holdout: '#1f5aa6',
-  haze: '#0891b2',
-  snow: '#38bdf8',
-  off_nadir: '#15803d',
-  foreign: '#7c5cbf',
-  military: '#dc2626',
-  synthetic: '#d97706',
+  ref_train: 'var(--domain-train)',
+  ref_calib: 'var(--domain-calibration)',
+  ref_holdout: 'var(--domain-control)',
+  haze: 'var(--domain-haze)',
+  snow: 'var(--domain-snow)',
+  off_nadir: 'var(--domain-off-nadir)',
+  foreign: 'var(--domain-foreign)',
+  military: 'var(--domain-military)',
+  synthetic: 'var(--domain-synthetic)',
 };
 
 const DOMAIN_LABELS: Record<string, string> = {
@@ -37,7 +37,7 @@ const DOMAIN_LABELS: Record<string, string> = {
 };
 
 function colorFor(domain: string): string {
-  return DOMAIN_COLORS[domain] ?? '#9aa3af';
+  return DOMAIN_COLORS[domain] ?? 'var(--series-reference)';
 }
 
 function labelFor(domain: string): string {

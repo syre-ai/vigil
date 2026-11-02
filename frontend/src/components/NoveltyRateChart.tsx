@@ -10,15 +10,15 @@ export function NoveltyRateChart({ batches }: { batches: Batch[] }) {
   return (
     <ResponsiveContainer width="100%" height={170}>
       <BarChart data={data} margin={{ top: 6, right: 8, left: 0, bottom: 4 }}>
-        <XAxis dataKey="shortName" tick={{ fill: '#8a93a1', fontSize: 11 }} axisLine={false} tickLine={false} interval={0} height={24} />
-        <YAxis tick={{ fill: '#8a93a1', fontSize: 11 }} axisLine={false} tickLine={false} width={30} tickCount={4} tickFormatter={(v: number) => `${Math.round(v * 100)}%`} />
+        <XAxis dataKey="shortName" tick={{ fill: 'var(--text-faint)', fontSize: 11 }} axisLine={false} tickLine={false} interval={0} height={24} />
+        <YAxis tick={{ fill: 'var(--text-faint)', fontSize: 11 }} axisLine={false} tickLine={false} width={30} tickCount={4} tickFormatter={(v: number) => `${Math.round(v * 100)}%`} />
         <Tooltip
-          contentStyle={{ background: '#ffffff', border: '1px solid #e2e5ea', fontSize: 11, borderRadius: 6 }}
-          labelStyle={{ color: '#111827' }}
+          contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', fontSize: 11, borderRadius: 0 }}
+          labelStyle={{ color: 'var(--text)' }}
           labelFormatter={(label) => fullNameByShort.get(String(label)) ?? label}
           formatter={(value) => [pct(Number(value)), 'novelty rate']}
         />
-        <Bar dataKey="novelty_rate" fill="#d97706" radius={[3, 3, 0, 0]} />
+        <Bar dataKey="novelty_rate" fill="var(--series-flagged)" radius={0} />
       </BarChart>
     </ResponsiveContainer>
   );

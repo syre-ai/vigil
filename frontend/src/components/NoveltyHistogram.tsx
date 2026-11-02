@@ -31,23 +31,23 @@ export function NoveltyHistogram({ batchHist, refHist, vigilance }: { batchHist:
     <ResponsiveContainer width="100%" height={220}>
       <ComposedChart margin={{ top: 8, right: 16, left: -12, bottom: 4 }}>
         <CartesianGrid stroke="var(--border-soft)" vertical={false} />
-        <XAxis dataKey="x" type="number" domain={[xMin, xMax]} tick={{ fill: '#8a93a1', fontSize: 11 }} tickFormatter={(v: number) => v.toFixed(2)} />
-        <YAxis tick={{ fill: '#8a93a1', fontSize: 11 }} width={42} tickFormatter={(v: number) => `${Math.round(v * 100)}%`} />
+        <XAxis dataKey="x" type="number" domain={[xMin, xMax]} tick={{ fill: 'var(--text-faint)', fontSize: 11 }} tickFormatter={(v: number) => v.toFixed(2)} />
+        <YAxis tick={{ fill: 'var(--text-faint)', fontSize: 11 }} width={42} tickFormatter={(v: number) => `${Math.round(v * 100)}%`} />
         <Tooltip
-          contentStyle={{ background: '#ffffff', border: '1px solid #e2e5ea', fontSize: 11, borderRadius: 6 }}
-          labelStyle={{ color: '#111827' }}
+          contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', fontSize: 11, borderRadius: 0 }}
+          labelStyle={{ color: 'var(--text)' }}
           labelFormatter={(v) => `novelty ${Number(v).toFixed(2)}`}
           formatter={(value, name) => [`${(Number(value) * 100).toFixed(1)}%`, String(name)]}
         />
         <Legend wrapperStyle={{ fontSize: 11 }} />
-        <Area data={refData} dataKey="density" name="reference domain" type="stepAfter" stroke="#1f5aa6" fill="#1f5aa6" fillOpacity={0.12} strokeWidth={1.5} isAnimationActive={false} />
-        <Area data={batchData} dataKey="density" name="this batch" type="stepAfter" stroke="#d97706" fill="#d97706" fillOpacity={0.15} strokeWidth={1.5} isAnimationActive={false} />
+        <Area data={refData} dataKey="density" name="reference domain" type="stepAfter" stroke="var(--series-control)" fill="var(--series-control)" fillOpacity={0.12} strokeWidth={1.5} isAnimationActive={false} />
+        <Area data={batchData} dataKey="density" name="this batch" type="stepAfter" stroke="var(--series-flagged)" fill="var(--series-flagged)" fillOpacity={0.15} strokeWidth={1.5} isAnimationActive={false} />
         {vigilanceX != null && (
           <ReferenceLine
             x={vigilanceX}
-            stroke="#dc2626"
+            stroke="var(--series-alert)"
             strokeDasharray="4 3"
-            label={{ value: 'vigilance threshold', position: 'insideTopRight', fill: '#dc2626', fontSize: 11 }}
+            label={{ value: 'vigilance threshold', position: 'insideTopRight', fill: 'var(--series-alert)', fontSize: 11 }}
           />
         )}
       </ComposedChart>

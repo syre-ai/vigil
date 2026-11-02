@@ -55,14 +55,14 @@ export function EmbeddingScatter({ reference, batch }: { reference: EmbeddingRef
     <ResponsiveContainer width="100%" height={440}>
       <ScatterChart margin={{ top: 10, right: 16, bottom: 10, left: 0 }}>
         <CartesianGrid stroke="var(--border-soft)" />
-        <XAxis type="number" dataKey="x" tick={{ fill: '#8a93a1', fontSize: 11 }} name="dim 1" />
-        <YAxis type="number" dataKey="y" tick={{ fill: '#8a93a1', fontSize: 11 }} name="dim 2" />
+        <XAxis type="number" dataKey="x" tick={{ fill: 'var(--text-faint)', fontSize: 11 }} name="dim 1" />
+        <YAxis type="number" dataKey="y" tick={{ fill: 'var(--text-faint)', fontSize: 11 }} name="dim 2" />
         <ZAxis dataKey="z" range={[24, 24]} />
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ fontSize: 11 }} />
-        <Scatter name="reference" data={refData} fill="#9aa3af" fillOpacity={0.55} shape={dot(2.5)} isAnimationActive={false} />
-        <Scatter name="batch (not novel)" data={normal} fill="#1f5aa6" shape={dot(4)} isAnimationActive={false} />
-        <Scatter name="batch (novel)" data={novel} fill="#d97706" shape={dot(4)} isAnimationActive={false} />
+        <Scatter name="reference" data={refData} fill="var(--series-reference)" fillOpacity={0.55} shape={dot(2.5)} isAnimationActive={false} />
+        <Scatter name="batch (not novel)" data={normal} fill="var(--series-control)" shape={dot(4)} isAnimationActive={false} />
+        <Scatter name="batch (novel)" data={novel} fill="var(--series-flagged)" shape={dot(4)} isAnimationActive={false} />
       </ScatterChart>
     </ResponsiveContainer>
   );
