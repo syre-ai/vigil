@@ -2,6 +2,8 @@
 
 Vigil checks three signals on public RarePlanes (WorldView-3) imagery, all computed live from the data.
 
+**[Live demo](https://syre-ai.github.io/vigil/)**: a read-only snapshot of the app, recorded from the real backend (`frontend/scripts/record_snapshot.mjs`).
+
 | Signal | Method |
 |---|---|
 | Scene drift | DINOv2 tile embeddings, 5-NN distance to reference, parent-image block bootstrap |
